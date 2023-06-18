@@ -9,11 +9,11 @@ class Ticket extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "ticket-form-name",
-        "ticket-form-email",
-        "ticket-form-phone",
-        "form-check-input",
-        "ticket-form-number",
-        "ticket-form-message"
+        "name",
+        "email",
+        "phone",
+        "ticket_type",
+        "count",
+        "message"
     ];
 }

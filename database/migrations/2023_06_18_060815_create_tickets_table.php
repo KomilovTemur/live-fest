@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string("ticket-form-name");
-            $table->string("ticket-form-email");
-            $table->string("ticket-form-phone");
-            $table->string("form-check-input");
-            $table->string("ticket-form-number");
-            $table->string("ticket-form-message")->nullable();
+            $table->string("name");
+            $table->string("email");
+            $table->string("phone");
+            $table->string("ticket_type");
+            $table->string("count");
+            $table->string("message")->nullable();
             $table->timestamps();
         });
     }

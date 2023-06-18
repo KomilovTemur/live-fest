@@ -28,11 +28,15 @@ class frontEndContoller extends Controller
     {
         // dd($request->all());
         $request->validate([
-            "ticket-form-name" => "required",
-            "ticket-form-email" => "required|email|unique:tickets,ticket-form-email",
-            "ticket-form-phone" => "required|integer|unique:tickets,ticket-form-phone",
-            "form-check-input" => "required",
-            "ticket-form-number" => "required|integer",
+            // "ticket-form-name" => "required",
+            // "ticket-form-email" => "required|email|unique:tickets,ticket-form-email",
+            // "ticket-form-phone" => "required|integer|unique:tickets,ticket-form-phone",
+            // "form-check-input" => "required",
+            // "ticket-form-number" => "required|integer",
+            "name" => "required",
+            "email" => "required|email|unique:tickets,email",
+            "phone" => "required|integer|unique:tickets,phone",
+            "ticket_type" => "required",
         ]);
         Ticket::create($request->all());
         return redirect()->route('ticket')->with('success', 'The order was placed');
