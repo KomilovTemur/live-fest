@@ -45,33 +45,23 @@
 
 
                 <h6>Choose Ticket Type</h6>
-
                 <div class="row mb-4">
-                  <div class="col-lg-6 col-md-6 col-12">
-                    <div class="form-check form-check-radio mb-0 form-control">
-                      <input class="form-check-input" @checked(old('ticket_type') == "Eary bird $120") type="radio" value="Eary bird $120"
-                        name="ticket_type" id="flexRadioDefault1">
-                      <label class="form-check-label" for="flexRadioDefault1">
-                        Eary bird $120
-                      </label>
+                  @foreach ($tickets as $ticket)
+                    <div class="col-lg-6 col-md-6 col-12">
+                      <div class="form-check form-check-radio mb-0 form-control">
+                        <input class="form-check-input" @checked(old('ticket_type') == '{{ $ticket->name }}') type="radio"
+                          value="{{ $ticket->id }}" name="ticket_id" id="{{$ticket->name}}">
+                        <label class="form-check-label" for="{{$ticket->name}}">
+                          {{ $ticket->name }} {{ $ticket->price }}
+                        </label>
+                      </div>
                     </div>
-                  </div>
-
-                  <div class="col-lg-6 col-md-6 col-12">
-                    <div class="form-check form-check-radio mb-0 form-control">
-                      <input class="form-check-input" @checked(old('ticket_type') == "Standard $240") type="radio" value="Standard $240"
-                        name="ticket_type" id="flexRadioDefault2">
-                      <label class="form-check-label" for="flexRadioDefault2">
-                        Standard $240
-                      </label>
-                    </div>
-                  </div>
+                  @endforeach
                   <div class="col-12">
                     @error('ticket_type')
                       <p style="color: red">{{ $message }}</p>
                     @enderror
                   </div>
-
                 </div>
 
                 <input type="number" value="{{ old('count') }}" name="count" id="ticket-form-number"

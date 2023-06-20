@@ -4,7 +4,7 @@
   <div class="content">
     @include('layouts.admin.navbar')
 
-    {{ $tickets }}
+    {{-- {{ $tickets }} --}}
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4">
       <div class="row g-4">
@@ -63,21 +63,19 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th scope="col">Ticket Type</th>
                 <th scope="col">Count</th>
                 <th scope="col">Message</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($tickets as $ticket)
+              @foreach ($orders as $order)
                 <tr>
-                  <td>{{ $ticket->id }}</td>
-                  <td>{{ $ticket->name }}</td>
-                  <td>{{ $ticket->email }}</td>
-                  <td>{{ $ticket->phone }}</td>
-                  <td>{{ $ticket->ticket_type }}</td>
-                  <td>{{ $ticket->count }}</td>
-                  <td>{{ $ticket->message ?? 'no message' }}</td>
+                  <td>{{ $order->id }}</td>
+                  <td>{{ $order->name }}</td>
+                  <td>{{ $order->email }}</td>
+                  <td>{{ $order->phone }}</td>
+                  <td>{{ $order->count }}</td>
+                  <td>{{ $order->message ?? 'no message' }}</td>
                 </tr>
               @endforeach
             </tbody>

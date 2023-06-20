@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         "name",
-        "email",
-        "phone",
-        "ticket_type",
-        "count",
-        "message"
+        "price"
     ];
+
+    public function orders() {
+        return $this->belongsToMany(Order::class);
+    }
 }

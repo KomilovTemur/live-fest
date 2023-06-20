@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactForm;
+use App\Models\Order;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -22,23 +23,21 @@ class frontEndContoller extends Controller
     // Ticket
     public function ticket()
     {
-        return view('frontend.ticket');
+        $tickets = Ticket::all();
+        return view('frontend.ticket', compact('tickets'));
     }
     public function buyTicket(Request $request)
     {
         // dd($request->all());
         $request->validate([
-            // "ticket-form-name" => "required",
-            // "ticket-form-email" => "required|email|unique:tickets,ticket-form-email",
-            // "ticket-form-phone" => "required|integer|unique:tickets,ticket-form-phone",
-            // "form-check-input" => "required",
-            // "ticket-form-number" => "required|integer",
             "name" => "required",
-            "email" => "required|email|unique:tickets,email",
-            "phone" => "required|integer|unique:tickets,phone",
-            "ticket_type" => "required",
+            "email" => "required|email",
+            "phone" => "required|integer",
+            "ticket_id" => "required",
+            "count" => "required",
         ]);
-        Ticket::create($request->all());
+        $order = Order::create($request->all());
+        $order->tickets()->attach($request->ticket_id);
         return redirect()->route('ticket')->with('success', 'The order was placed');
     }
 }
