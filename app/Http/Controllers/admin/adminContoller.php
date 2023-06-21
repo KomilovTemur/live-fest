@@ -11,7 +11,13 @@ class adminContoller extends Controller
 {
     public function index()
     {
-        $orders = Order::all();
-        return view('admin.dashboard', compact('orders'));
+        $orders = Order::all()->sortByDesc("id");
+        $tatalSale = 0;
+        foreach ($orders as $order) {
+            foreach($order->tickets as $ticket) {
+                $tatalSale += $ticket->price * $order->count;
+            }
+        }
+        return view('admin.dashboard', compact('orders', 'tatalSale'));
     }
 }

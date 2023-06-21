@@ -22,7 +22,7 @@
             <i class="fa fa-chart-bar fa-3x text-primary"></i>
             <div class="ms-3">
               <p class="mb-2">Total Sale</p>
-              <h6 class="mb-0">$1234</h6>
+              <h6 class="mb-0">{{ $tatalSale }}$</h6>
             </div>
           </div>
         </div>
@@ -63,17 +63,26 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
+                <th scope="col">Ticket</th>
                 <th scope="col">Count</th>
                 <th scope="col">Message</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($orders as $order)
+                {{-- {{$order->tickets}} --}}
+
                 <tr>
                   <td>{{ $order->id }}</td>
                   <td>{{ $order->name }}</td>
                   <td>{{ $order->email }}</td>
                   <td>{{ $order->phone }}</td>
+                  <td>
+                    @for ($i = 0; $i < count($order->tickets); $i++)
+                      {{ $order->tickets[$i]->name }}
+                      {{ $order->tickets[$i]->price * $order->count }}$
+                    @endfor
+                  </td>
                   <td>{{ $order->count }}</td>
                   <td>{{ $order->message ?? 'no message' }}</td>
                 </tr>
