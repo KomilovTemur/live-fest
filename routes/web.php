@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\adminContoller;
 use App\Http\Controllers\frontEndContoller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\FestDate;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::post('/buy-tickey', [frontEndContoller::class, 'buyTicket'])->name('buyTi
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [adminContoller::class, 'index'])->name('dashboard');
+    Route::resource('festDate', FestDate::class);
 });
 
 Route::middleware('auth')->group(function () {
